@@ -1,0 +1,21 @@
+---
+import Greeting from '../react/Greeting';
+import Me from './Me.astro';
+import Description from './Description.astro';
+import LinkList from './LinkList.astro';
+import CardList from './CardList.astro';
+import Skills from '../react/Skills';
+import Goodbye from './Goodbye.astro';
+---
+
+<Me />
+<Greeting client:load />
+<Description />
+<LinkList />
+<Skills client:visible />
+<CardList />
+<Goodbye />
+<LinkList />
+<br />
+<br />
+<br />

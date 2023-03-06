@@ -1,0 +1,10 @@
+.skillsWrapper {
+  margin: 0 12rem;
+}
+
+/* reduce margin on smaller screens */
+@media screen and (max-width: 768px) {
+  .skillsWrapper {
+    margin: 0 2rem;
+  }
+}

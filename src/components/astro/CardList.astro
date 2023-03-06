@@ -1,0 +1,102 @@
+---
+import Blinker from '../react/Blinker';
+import Card from './Card.astro';
+---
+
+<h1 class="experience-header">Experience<Blinker /></h1>
+<div class="experience-wrapper">
+  <ul role="list" class="card-grid">
+    <Card
+      title="Say Something"
+      bulletPoints={[
+        'Built full stack application from the ground up, using modern tooling and enabling users to send/receive a message each day.',
+      ]}
+      imgSrc="say-something.png"
+      tools="TypeScript, React, NextJS, TRPC, React Query, PlanetScale, Vercel, HTML/CSS"
+      actionButtonProps={[
+        {
+          href: 'https://say-something-indol.vercel.app/',
+          title: 'View Site',
+        },
+      ]}
+    />
+
+    <Card
+      title="Gatherboard Mobile App"
+      bulletPoints={[
+        'Served as software engineer and team Lead for cross platform mobile app project in capstone course, managing a small team of developers.',
+      ]}
+      imgSrc="gatherboard.png"
+      tools="TypeScript, Angular, HTML/CSS, Ionic Framework"
+      actionButtonProps={[
+        {
+          href: 'https://play.google.com/store/apps/details?id=com.gatherboard.app',
+          title: 'View Android',
+        },
+        {
+          href: 'https://play.google.com/store/apps/details?id=com.gatherboard.app',
+          title: 'View iOS',
+        },
+      ]}
+    />
+    <Card
+      title="Orbital Shift Mobile Apps"
+      bulletPoints={[
+        'Brought Orbital Shift into the mobile space, building and releasing both the Orbital Shift Employee App, as well as the Orbital Shift Punch Clock App.',
+        'Enabled employees and managers to clock in/out, view schedules, and view company updates.',
+      ]}
+      imgSrc="orbitalshift.png"
+      tools="TypeScript, Angular, HTML/CSS, Ionic Framework"
+      actionButtonProps={[
+        {
+          href: 'https://play.google.com/store/apps/details?id=com.orbitalshift.app&hl=en',
+          title: 'View Employee App',
+        },
+        {
+          href: 'https://play.google.com/store/apps/details?id=com.orbitalshiftpunchclock.app&hl=en',
+          title: 'View iOS',
+        },
+      ]}
+    />
+    <Card
+      title="The Walt Disney Company"
+      bulletPoints={[
+        'While I cannot share the internal facing products/tools I have built at the Walt Disney Company, I figured I would briefly chat about what I focus on at my day job :).',
+        'Specifically, I have built several React web applications and tools that help facilitate content scheduling, data visualization and developer productivity.',
+      ]}
+      imgSrc="twdc.png"
+      tools="TypeScript, HTML/CSS, React, TRPC, React Query, Bash, Python"
+    />
+  </ul>
+</div>
+
+<style>
+  .experience-header {
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+  @media screen and (max-width: 768px) {
+    .experience-header {
+      margin: 0 2rem !important;
+    }
+  }
+  .experience-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0 12rem;
+  }
+  @media screen and (max-width: 768px) {
+    .experience-wrapper {
+      margin: 0 !important;
+    }
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 0;
+  }
+</style>

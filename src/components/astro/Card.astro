@@ -1,0 +1,64 @@
+---
+import ActionButton from './ActionButton.astro';
+import type { Props as ActionButtonProps } from './ActionButton.astro';
+
+export interface Props {
+  title: string;
+  bulletPoints?: string[];
+  imgSrc: string;
+  tools: string;
+  actionButtonProps?: ActionButtonProps[];
+}
+
+const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
+---
+
+<li class="card">
+  <h2>
+    {title}
+  </h2>
+  <img src={imgSrc} class="card-img" />
+  {bulletPoints?.map((point) => <p>{point}</p>)}
+  <br />
+  <p>🛠️: {tools}</p>
+  <div class="action-button-container">
+    {actionButtonProps?.map((props) => <ActionButton {...props} />)}
+  </div>
+</li>
+
+<style>
+  .action-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    background-color: #222;
+    border-radius: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 1.5rem;
+  }
+  @media screen and (max-width: 768px) {
+    .card {
+      border-radius: 0 !important;
+      margin: 0;
+    }
+  }
+  .card-img {
+    margin: 1rem 0;
+    max-height: 100%;
+    max-width: 100%;
+  }
+  h2 {
+    color: #00ff1e;
+    margin: 0;
+  }
+  p {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    color: #fff;
+  }
+</style>
