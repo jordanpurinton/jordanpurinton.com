@@ -2,7 +2,7 @@
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
-  font-family: 'Press Start 2P';
+  font-family: 'Press Start 2P', 'monospace';
   font-weight: bold;
   line-height: 0;
   margin: 1rem 0;
@@ -27,12 +27,12 @@
 }
 
 span:nth-child(2) {
-  color: #67f3da !important;
+  color: #b267f3 !important;
   animation: glitch2 2.5s infinite;
 }
 
 span:nth-child(3) {
-  color: #f16f6f !important;
+  color: #f49f00 !important;
   animation: glitch3 2.5s infinite;
 }
 

@@ -17,25 +17,32 @@ type TCustomTooltipProps = {
   payload: TTooltipPayload;
 };
 
+const ADVANCED = 'Advanced';
+const INTERMEDIATE_TO_ADVANCED = 'Intermediate to Advanced';
+const INTERMEDIATE = 'Intermediate';
+const BEGINNER_TO_INTERMEDIATE = 'Beginner to Intermediate';
+
 const data = [
   {
-    name: 'TS',
+    name: 'TS/JS',
+    skillset: ADVANCED,
     value: 85,
   },
   {
     name: 'React',
+    skillset: ADVANCED,
     value: 85,
   },
-  { name: 'HTML', value: 85 },
-  { name: 'CSS', value: 80 },
-  { name: 'Python', value: 70 },
-  { name: 'AWS', value: 70 },
-  { name: 'Bash', value: 60 },
-  { name: 'Java', value: 50 },
-  { name: 'Kotlin', value: 50 },
+  { name: 'HTML', skillset: INTERMEDIATE_TO_ADVANCED, value: 80 },
+  { name: 'CSS', skillset: INTERMEDIATE, value: 80 },
+  { name: 'Python', skillset: INTERMEDIATE, value: 70 },
+  { name: 'AWS', skillset: INTERMEDIATE, value: 70 },
+  { name: 'Bash', skillset: INTERMEDIATE, value: 60 },
+  { name: 'Java', skillset: BEGINNER_TO_INTERMEDIATE, value: 50 },
+  { name: 'Kotlin', skillset: BEGINNER_TO_INTERMEDIATE, value: 50 },
 ];
 
-export function CustomTooltip(props: TCustomTooltipProps) {
+function CustomTooltip(props: TCustomTooltipProps) {
   const { active, payload } = props;
 
   if (!active || !payload || !payload.length) return null;
@@ -43,10 +50,9 @@ export function CustomTooltip(props: TCustomTooltipProps) {
   const { name, value } = payload[0].payload;
 
   return (
-    <div style={{ padding: '1rem', maxWidth: 400 }}>
-      <h2>
-        {name}: {value}%
-      </h2>
+    <div style={{ background: '#222', padding: '1rem', maxWidth: 400 }}>
+      <p>{name}</p>
+      <p>{value}/100</p>
     </div>
   );
 }
@@ -62,6 +68,7 @@ export default function Skills() {
         &gt; I'm a frontend developer with full-stack experience.
         <br />
         &gt; I primarily use TypeScript, React and HTML/CSS in my day to day.
+        <br />
         &gt; I also have wide ranging experiences with orchestrating
         infrastructure in the AWS ecosystem.
         <br />
@@ -69,13 +76,7 @@ export default function Skills() {
         building backend services.
         <br />
       </p>
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '1400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className={styles.responsiveChartContainer}>
         <ResponsiveContainer height={300}>
           <BarChart data={data} layout="vertical">
             <XAxis type="number" hide tick />
@@ -97,7 +98,6 @@ export default function Skills() {
               )}
             />
             <Tooltip
-              wrapperStyle={{ backgroundColor: '#333' }}
               cursor={{ fill: '#333' }}
               content={({ active, payload }) => (
                 <CustomTooltip

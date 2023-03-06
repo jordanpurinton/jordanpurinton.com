@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.0.2",
+    "@fontsource/press-start-2p": "^4.5.11",
+    "@fontsource/source-code-pro": "^4.5.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "astro": "^2.0.13",

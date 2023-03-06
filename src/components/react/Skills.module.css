@@ -2,9 +2,20 @@
   margin: 0 12rem;
 }
 
-/* reduce margin on smaller screens */
 @media screen and (max-width: 768px) {
   .skillsWrapper {
     margin: 0 2rem;
   }
+}
+
+.responsiveChartContainer {
+  width: '100%';
+  max-width: '1400px';
+  margin: '0 auto';
+}
+
+.tooltip {
+  fill: '#222';
+  padding: '1rem';
+  max-width: 400;
 }

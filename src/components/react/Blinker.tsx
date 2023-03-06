@@ -1,7 +1,5 @@
 import styles from './Blinker.module.css';
 
-export default function Blinker({ className }: { className?: string }) {
-  return (
-    <span className={`${styles.blinker} ${className ? className : ''}`}>|</span>
-  );
+export default function Blinker() {
+  return <span className={styles.blinker}>|</span>;
 }
