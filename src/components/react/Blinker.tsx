@@ -1,5 +1,5 @@
 import styles from './Blinker.module.css';
 
 export default function Blinker() {
-  return <span className={styles.blinker}>|</span>;
+	return <span className={styles.blinker}>|</span>;
 }

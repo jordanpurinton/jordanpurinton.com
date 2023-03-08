@@ -1,21 +1,21 @@
 .skillsWrapper {
-  margin: 0 12rem;
+	margin: 0 12rem;
 }
 
 @media screen and (max-width: 768px) {
-  .skillsWrapper {
-    margin: 0 2rem;
-  }
+	.skillsWrapper {
+		margin: 0 2rem;
+	}
 }
 
 .responsiveChartContainer {
-  width: '100%';
-  max-width: '1400px';
-  margin: '0 auto';
+	width: '100%';
+	max-width: '1400px';
+	margin: '0 auto';
 }
 
 .tooltip {
-  fill: '#222';
-  padding: '1rem';
-  max-width: 400;
+	fill: '#222';
+	padding: '1rem';
+	max-width: 400;
 }

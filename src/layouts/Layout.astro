@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  title: string;
+	title: string;
 }
 
 import '@fontsource/source-code-pro';
@@ -11,52 +11,52 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"
-    />
-    <link rel="
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"
+		/>
+		<link rel="
       icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
 
 <style is:global>
-  :root {
-    --primary-color: #00ff1e;
-    --primary-color-gradient: linear-gradient(
-      45deg,
-      var(--primary-color),
-      var(--secondary-color),
-      white 60%
-    );
-    --secondary-color: #d500c7;
-  }
-  html {
-    font-family: 'Source Code Pro', monospace;
-    font-kerning: none;
-    height: 100%;
-    widows: 100%;
-  }
-  body {
-    background-color: #111;
-    margin: 0;
-  }
-  a,
-  p,
-  h1,
-  h2,
-  button {
-    color: var(--primary-color);
-    color: var(--primary-color);
-  }
-  [astro-icon] {
-    color: var(--primary-color);
-  }
+	:root {
+		--primary-color: #00ff1e;
+		--primary-color-gradient: linear-gradient(
+			45deg,
+			var(--primary-color),
+			var(--secondary-color),
+			white 60%
+		);
+		--secondary-color: #d500c7;
+	}
+	html {
+		font-family: 'Source Code Pro', monospace;
+		font-kerning: none;
+		height: 100%;
+		widows: 100%;
+	}
+	body {
+		background-color: #111;
+		margin: 0;
+	}
+	a,
+	p,
+	h1,
+	h2,
+	button {
+		color: var(--primary-color);
+		color: var(--primary-color);
+	}
+	[astro-icon] {
+		color: var(--primary-color);
+	}
 </style>
