@@ -65,7 +65,7 @@ export default function Skills() {
 				<Blinker />
 			</h1>
 			<p>
-				&gt; I'm a frontend developer with full-stack experience.
+				&gt; I&apos;m a frontend developer with full-stack experience.
 				<br />
 				&gt; I primarily use TypeScript, React and HTML/CSS in my day to day.
 				<br />
