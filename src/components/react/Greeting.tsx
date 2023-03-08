@@ -2,11 +2,11 @@ import styles from './Greeting.module.css';
 import { useEffect, useState } from 'react';
 
 const greetingTextVariants = [
-	'Jordan Purinton 👋',
-	'a software engineer 💻',
-	'a fan of TypeScript ✅',
-	'a cereal enjoyer 🥣',
-	'a Mario Tennis enthusiast 🎾',
+	'Jordan Purinton',
+	'a software engineer',
+	'a fan of TypeScript',
+	'a cereal enjoyer',
+	'a Mario Tennis enthusiast',
 	'just happy to be here',
 ] as const;
 
