@@ -2,11 +2,17 @@
 	color: var(--primary-color);
 	display: flex;
 	flex-direction: column;
-	font-family: 'Press Start 2P', 'monospace';
+	font-size: 1.5rem;
 	font-weight: bold;
 	line-height: 0;
-	margin: 1rem 0;
+	margin: 0.25rem 0;
 	text-align: center;
+}
+
+@media screen and (max-width: 850px) {
+	.greeting {
+		font-size: 0.85rem;
+	}
 }
 
 @keyframes blink {
