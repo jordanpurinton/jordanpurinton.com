@@ -14,6 +14,11 @@
 		font-size: 0.85rem;
 	}
 }
+@media screen and (max-width: 400px) {
+	.greeting {
+		font-size: 0.75rem;
+	}
+}
 
 @keyframes blink {
 	50% {

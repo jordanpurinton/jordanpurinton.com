@@ -23,8 +23,7 @@ const { title } = Astro.props;
 			crossorigin="anonymous"
 		></script>
 		<script>
-			window.LogRocket &&
-				window.LogRocket.init('jordan-purinton/jordanpurintoncom');
+			(window as any)?.LogRocket?.init?.('jordan-purinton/jordanpurintoncom');
 		</script>
 	</head>
 	<body>
@@ -47,10 +46,11 @@ const { title } = Astro.props;
 		font-family: 'Courier New', Courier, monospace;
 		font-kerning: none;
 		height: 100%;
-		widows: 100%;
+		width: 100%;
 	}
 	body {
-		background-color: #111;
+		background: linear-gradient(rgb(0, 59, 25) 0%, rgb(0, 19, 8) 50%);
+		background-attachment: fixed;
 		margin: 0;
 	}
 	a,
