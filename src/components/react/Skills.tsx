@@ -25,21 +25,21 @@ const BEGINNER_TO_INTERMEDIATE = 'Beginner to Intermediate';
 const data = [
 	{
 		name: 'TS/JS',
-		skillset: ADVANCED,
+		level: ADVANCED,
 		value: 85,
 	},
 	{
 		name: 'React',
-		skillset: ADVANCED,
+		level: ADVANCED,
 		value: 85,
 	},
-	{ name: 'HTML', skillset: INTERMEDIATE_TO_ADVANCED, value: 80 },
-	{ name: 'CSS', skillset: INTERMEDIATE, value: 80 },
-	{ name: 'Python', skillset: INTERMEDIATE, value: 70 },
-	{ name: 'AWS', skillset: INTERMEDIATE, value: 70 },
-	{ name: 'Bash', skillset: INTERMEDIATE, value: 60 },
-	{ name: 'Java', skillset: BEGINNER_TO_INTERMEDIATE, value: 50 },
-	{ name: 'Kotlin', skillset: BEGINNER_TO_INTERMEDIATE, value: 50 },
+	{ name: 'HTML', level: INTERMEDIATE_TO_ADVANCED, value: 80 },
+	{ name: 'CSS', level: INTERMEDIATE, value: 80 },
+	{ name: 'Python', level: INTERMEDIATE, value: 70 },
+	{ name: 'AWS', level: INTERMEDIATE, value: 70 },
+	{ name: 'Bash', level: INTERMEDIATE, value: 60 },
+	{ name: 'Java', level: BEGINNER_TO_INTERMEDIATE, value: 50 },
+	{ name: 'Kotlin', level: BEGINNER_TO_INTERMEDIATE, value: 50 },
 ];
 
 function CustomTooltip(props: TCustomTooltipProps) {
@@ -47,12 +47,13 @@ function CustomTooltip(props: TCustomTooltipProps) {
 
 	if (!active || !payload || !payload.length) return null;
 
-	const { name, value } = payload[0].payload;
+	const { name, value, level } = payload[0].payload;
 
 	return (
 		<div style={{ background: '#222', padding: '1rem', maxWidth: 400 }}>
-			<p>{name}</p>
+			<b>{name}</b>
 			<p>{value}/100</p>
+			<p>{level}</p>
 		</div>
 	);
 }
