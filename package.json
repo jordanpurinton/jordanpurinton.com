@@ -11,14 +11,16 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@astrojs/image": "^0.16.0",
 		"@astrojs/react": "^2.0.2",
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",
-		"astro": "^2.0.13",
+		"astro": "^2.1.2",
 		"astro-icon": "^0.8.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"recharts": "^2.4.3"
+		"recharts": "^2.4.3",
+		"sharp": "^0.31.3"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.54.1",
