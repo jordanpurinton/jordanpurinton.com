@@ -6,7 +6,6 @@ const greetingTextVariants = [
 	'a software engineer',
 	'a fan of TypeScript',
 	'a cereal enjoyer',
-	'a Mario Tennis enthusiast',
 	'just happy to be here',
 ] as const;
 
