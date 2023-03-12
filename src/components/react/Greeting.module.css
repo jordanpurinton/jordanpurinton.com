@@ -20,6 +20,12 @@
 	}
 }
 
+@media screen and (max-width: 350px) {
+	.greeting {
+		font-size: 0.6rem;
+	}
+}
+
 @keyframes blink {
 	50% {
 		opacity: 0;
