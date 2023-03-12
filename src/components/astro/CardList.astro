@@ -7,20 +7,14 @@ import Card from './Card.astro';
 <div class="experience-wrapper">
 	<ul role="list" class="card-grid">
 		<Card
-			title="Say Something"
+			title="The Walt Disney Company"
 			bulletPoints={[
-				'Built full stack application from the ground up, using modern tooling and enabling users to send/receive a message each day.',
+				'While I cannot share the internal facing products/tools I have built at the Walt Disney Company, I figured I would briefly chat about what I focus on at my day job.',
+				'Specifically, I have built several dynamic web applications and tools that help facilitate content scheduling, data visualization and developer productivity.',
 			]}
-			imgSrc="say-something.png"
-			tools="TypeScript, React, NextJS, TRPC, React Query, PlanetScale, Vercel, HTML/CSS"
-			actionButtonProps={[
-				{
-					href: 'https://say-something-indol.vercel.app/',
-					title: 'View Site',
-				},
-			]}
+			imgSrc="twdc.png"
+			tools="TypeScript, HTML/CSS, React, TRPC, React Query, Bash, Python"
 		/>
-
 		<Card
 			title="Gatherboard Mobile App"
 			bulletPoints={[
@@ -59,13 +53,18 @@ import Card from './Card.astro';
 			]}
 		/>
 		<Card
-			title="The Walt Disney Company"
+			title="Say Something"
 			bulletPoints={[
-				'While I cannot share the internal facing products/tools I have built at the Walt Disney Company, I figured I would briefly chat about what I focus on at my day job.',
-				'Specifically, I have built several dynamic web applications and tools that help facilitate content scheduling, data visualization and developer productivity.',
+				'Built full stack application from the ground up, using modern tooling and enabling users to send/receive a message each day.',
 			]}
-			imgSrc="twdc.png"
-			tools="TypeScript, HTML/CSS, React, TRPC, React Query, Bash, Python"
+			imgSrc="say-something.png"
+			tools="TypeScript, React, NextJS, TRPC, React Query, PlanetScale, Vercel, HTML/CSS"
+			actionButtonProps={[
+				{
+					href: 'https://say-something-indol.vercel.app/',
+					title: 'View Site',
+				},
+			]}
 		/>
 	</ul>
 </div>

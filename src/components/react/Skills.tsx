@@ -72,7 +72,7 @@ export default function Skills() {
 				&gt; I also have wide ranging experiences with orchestrating
 				infrastructure in the AWS ecosystem.
 				<br />
-				&gt; Additionally, I also have experience with Python, Java, Kotlin
+				&gt; Additionally, I also have experience with Python, Java, and Kotlin
 				building backend services.
 				<br />
 			</p>
