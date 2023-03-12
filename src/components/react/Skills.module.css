@@ -1,13 +1,3 @@
-.skillsWrapper {
-	margin: 0 12rem;
-}
-
-@media screen and (max-width: 768px) {
-	.skillsWrapper {
-		margin: 0 2rem;
-	}
-}
-
 .responsiveChartContainer {
 	width: '100%';
 	max-width: '1400px';

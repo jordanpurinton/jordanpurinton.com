@@ -59,7 +59,7 @@ function CustomTooltip(props: TCustomTooltipProps) {
 
 export default function Skills() {
 	return (
-		<div className={styles.skillsWrapper}>
+		<div>
 			<h1>
 				Skills
 				<Blinker />
@@ -82,7 +82,7 @@ export default function Skills() {
 						<XAxis type="number" hide tick />
 						<YAxis
 							type="category"
-							width={150}
+							width={80}
 							dataKey="name"
 							tick={({ x, y, payload }) => (
 								<text

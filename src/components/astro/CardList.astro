@@ -3,8 +3,8 @@ import Blinker from '../react/Blinker';
 import Card from './Card.astro';
 ---
 
-<h1 class="experience-header">Experience<Blinker /></h1>
-<div class="experience-wrapper">
+<div>
+	<h1>Experience<Blinker /></h1>
 	<ul role="list" class="card-grid">
 		<Card
 			title="The Walt Disney Company"
@@ -74,31 +74,16 @@ import Card from './Card.astro';
 </div>
 
 <style>
-	.experience-header {
-		margin: 1rem 12rem;
-	}
-	@media screen and (max-width: 768px) {
-		.experience-header {
-			margin: 1rem 2rem;
-		}
-	}
-	.experience-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
-		margin: 0 12rem;
-	}
-	@media screen and (max-width: 768px) {
-		.experience-wrapper {
-			margin: 0 !important;
-		}
-	}
 	.card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 		justify-content: flex-start;
-		gap: 2rem;
+		gap: 4rem;
 		padding: 0;
+	}
+	@media (max-width: 600px) {
+		.card-grid {
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		}
 	}
 </style>
