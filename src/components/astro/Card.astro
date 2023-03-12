@@ -1,7 +1,7 @@
 ---
 import ActionButton from './ActionButton.astro';
 import type { Props as ActionButtonProps } from './ActionButton.astro';
-import { Image, Picture } from '@astrojs/image/components';
+import { Image } from '@astrojs/image/components';
 
 export interface Props {
 	title: string;
@@ -19,10 +19,9 @@ const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
 		{title}
 	</h2>
 	<Image
-		src={import(`/public/${imgSrc}`)}
+		src={import(/* @vite-ignore */ `../../../public/${imgSrc}.png`)}
 		alt={imgSrc}
 		class="card-img"
-		width={500}
 		aspectRatio="16:9"
 	/>
 	{bulletPoints?.map((point) => <p>{point}</p>)}
@@ -50,12 +49,12 @@ const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
 	}
 	@media screen and (max-width: 768px) {
 		.card {
-			margin: 1rem;
+			margin: 0;
 		}
 	}
 	.card-img {
 		margin: 1rem 0;
-		max-height: 100%;
+		height: auto;
 		max-width: 100%;
 	}
 	h2 {
