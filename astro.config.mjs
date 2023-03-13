@@ -8,6 +8,6 @@ import image from '@astrojs/image';
 // https://astro.build/config
 export default defineConfig({
 	integrations: [react(), image()],
-	site: 'https://jordan.purinton.github.io',
-	base: '/jordanpurinton.com',
+	site: 'https://jordanpurinton.com',
+	base: '/',
 });
