@@ -1,10 +1,11 @@
 ---
 import Blinker from '../react/Blinker';
+import NeonText from '../react/NeonText';
 import Card from './Card.astro';
 ---
 
 <div>
-	<h1>Experience<Blinker /></h1>
+	<h1><NeonText client-load content="Experience" /><Blinker /></h1>
 	<ul role="list" class="card-grid">
 		<Card
 			title="The Walt Disney Company"

@@ -8,6 +8,7 @@ import {
 	Tooltip,
 } from 'recharts';
 import Blinker from './Blinker';
+import NeonText from './NeonText';
 
 import styles from './Skills.module.css';
 
@@ -62,7 +63,7 @@ export default function Skills() {
 	return (
 		<div>
 			<h1>
-				Skills
+				<NeonText content="Skills" />
 				<Blinker />
 			</h1>
 			<p>

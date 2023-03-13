@@ -1,5 +1,7 @@
 import styles from './Greeting.module.css';
 import { useEffect, useState } from 'react';
+import Blinker from './Blinker';
+import NeonText from './NeonText';
 
 const greetingTextVariants = [
 	'Jordan Purinton',
@@ -24,11 +26,8 @@ export default function Greeting() {
 		<div className={styles.greeting}>
 			<h3>Hi, I&apos;m</h3>
 			<h1>
-				{[...Array(3)].map((_, index) => (
-					<span key={index} className={styles.content}>
-						{greetingTextVariants[greetingTextIndex]}{' '}
-					</span>
-				))}
+				<NeonText content={greetingTextVariants[greetingTextIndex]} />
+				<Blinker />
 			</h1>
 		</div>
 	);
