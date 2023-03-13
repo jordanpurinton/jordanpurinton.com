@@ -52,7 +52,7 @@ function CustomTooltip(props: TCustomTooltipProps) {
 
 	return (
 		<div style={{ background: '#222', padding: '1rem', maxWidth: 400 }}>
-			<b>{name}</b> {value}/100 - {level}
+			<b>{name} - {value}/100 - {level}</b>
 		</div>
 	);
 }
