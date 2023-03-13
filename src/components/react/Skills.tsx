@@ -69,13 +69,17 @@ export default function Skills() {
 			<p>
 				&gt; I&apos;m a frontend developer with full-stack experience.
 				<br />
+				<br />
 				&gt; I primarily use TypeScript, React and HTML/CSS in my day to day.
+				<br />
 				<br />
 				&gt; I also have wide ranging experiences with orchestrating
 				infrastructure in the AWS ecosystem.
 				<br />
+				<br />
 				&gt; Additionally, I also have experience with Python, Java, and Kotlin
 				building backend services.
+				<br />
 				<br />
 			</p>
 			<div className={styles.responsiveChartContainer}>
