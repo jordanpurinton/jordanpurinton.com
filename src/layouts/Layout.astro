@@ -45,13 +45,7 @@ const { title } = Astro.props;
 <style is:global>
 	:root {
 		--primary-color: #00ff1e;
-		--primary-color-gradient: linear-gradient(
-			45deg,
-			var(--primary-color),
-			var(--secondary-color),
-			white 60%
-		);
-		--secondary-color: #d500c7;
+		--secondary-color: #ff00e1;
 	}
 	html {
 		font-family: 'Courier New', Courier, monospace;
@@ -79,5 +73,9 @@ const { title } = Astro.props;
 	}
 	[astro-icon] {
 		color: var(--primary-color);
+	}
+	[astro-icon]:hover {
+		color: var(--secondary-color);
+		transition: ease-in 0.25s;
 	}
 </style>
