@@ -64,7 +64,6 @@ export default function Skills() {
 		<div>
 			<h1>
 				<NeonText content="Skills" />
-				<Blinker />
 			</h1>
 			<p>
 				&gt; I&apos;m a frontend developer with full-stack experience.

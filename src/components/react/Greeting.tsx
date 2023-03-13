@@ -27,7 +27,6 @@ export default function Greeting() {
 			<h3 className={styles.greetingPrefix}>Hi, I&apos;m</h3>
 			<h1 className={styles.greetingHeader}>
 				<NeonText content={greetingTextVariants[greetingTextIndex]} />
-				<Blinker />
 			</h1>
 		</>
 	);
