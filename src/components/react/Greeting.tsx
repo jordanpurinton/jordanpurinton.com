@@ -1,6 +1,5 @@
 import styles from './Greeting.module.css';
 import { useEffect, useState } from 'react';
-import Blinker from './Blinker';
 import NeonText from './NeonText';
 
 const greetingTextVariants = [
