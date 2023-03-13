@@ -72,12 +72,12 @@ export default function Skills() {
 				&gt; I primarily use TypeScript, React and HTML/CSS in my day to day.
 				<br />
 				<br />
-				&gt; I also have wide ranging experiences with orchestrating
-				infrastructure in the AWS ecosystem.
+				&gt; I have wide ranging experiences with orchestrating infrastructure
+				in the AWS ecosystem.
 				<br />
 				<br />
-				&gt; Additionally, I also have experience with Python, Java, and Kotlin
-				building backend services.
+				&gt; On the backend side of things, I have experience with Python, Java,
+				and Kotlin building backend services and tooling.
 				<br />
 				<br />
 			</p>

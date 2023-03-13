@@ -4,13 +4,10 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 import image from '@astrojs/image';
-import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [react(), image()],
-	output: 'server',
-	adapter: vercel({
-		analytics: true,
-	}),
+	site: 'https://jordan.purinton.github.io',
+	base: '/jordanpurinton.com',
 });
