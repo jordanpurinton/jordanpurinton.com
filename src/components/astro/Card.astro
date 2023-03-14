@@ -15,15 +15,15 @@ const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
 ---
 
 <li class="card">
-	<h2>
-		{title}
-	</h2>
 	<Image
 		src={import(/* @vite-ignore */ `../../../public/${imgSrc}.png`)}
 		alt={imgSrc}
 		class="card-img"
 		aspectRatio="16:9"
 	/>
+	<h3>
+		{title}
+	</h3>
 	{bulletPoints?.map((point) => <p>{point}</p>)}
 	<p>🛠️: {tools}</p>
 	<div class="action-button-container">
@@ -54,9 +54,5 @@ const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
 		line-height: 1.3;
 		margin: 1rem 0;
 		color: #fff;
-	}
-	h2 {
-		text-decoration: 1.5px underline wavy rgba(43, 255, 0, 0.235);
-		text-underline-offset: 0.5rem;
 	}
 </style>
