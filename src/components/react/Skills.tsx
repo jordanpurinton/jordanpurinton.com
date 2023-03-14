@@ -62,7 +62,7 @@ function CustomTooltip(props: TCustomTooltipProps) {
 export default function Skills() {
 	return (
 		<div>
-			<h2>
+			<h2 style={{ marginLeft: '1.25rem' }}>
 				<NeonText content="Skills" />
 			</h2>
 			<p>
