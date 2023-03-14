@@ -10,21 +10,20 @@ const { title, href } = Astro.props;
 
 <style>
 	.action-button {
+		align-items: center;
 		background: #111;
 		border: solid 1px var(--primary-color);
 		border-radius: 0.5rem;
 		cursor: pointer;
+		display: flex;
 		font-weight: 600;
+		justify-content: center;
 		max-height: 20px;
 		min-height: 20px;
 		outline: 0;
-		padding: 1rem;
+		padding: 1rem 1.75rem;
+		text-align: center;
 		text-decoration: none;
-	}
-	@media (max-width: 768px) {
-		.action-button {
-			font-size: 0.8rem;
-		}
 	}
 	.action-button:hover {
 		color: var(--secondary-color);
