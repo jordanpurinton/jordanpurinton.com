@@ -21,9 +21,9 @@ const { title, bulletPoints, imgSrc, tools, actionButtonProps } = Astro.props;
 		class="card-img"
 		aspectRatio="16:9"
 	/>
-	<h3>
+	<h2>
 		{title}
-	</h3>
+	</h2>
 	{bulletPoints?.map((point) => <p>{point}</p>)}
 	<p>🛠️: {tools}</p>
 	<div class="action-button-container">
