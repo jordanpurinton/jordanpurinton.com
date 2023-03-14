@@ -1,0 +1,56 @@
+---
+import NeonText from '../react/NeonText';
+import PeopleCard from './PeopleCard.astro';
+---
+
+<div>
+	<h1><NeonText client-load content="What People Are Saying" /></h1>
+	<ul role="list" class="card-grid">
+		<PeopleCard
+			name="Johnathan May"
+			title="DevOps and IT Security Expert (CISSP)"
+			bulletPoints={[
+				`"I only got to work with Jordan for a few months while he was an intern at my company, but in that time I was consistently impressed with his work ethic, his drive to learn, and his ability to quickly understand new concepts.`,
+				`Jordan has the "soft" skills necessary to work with clients and clearly has the ability to handle anything technical he puts his mind to. I would recommend working with him if you get the chance."`,
+			]}
+			imgSrc="johnathan"
+			href="https://www.linkedin.com/in/scottmathson/"
+		/>
+		<PeopleCard
+			name="Jesse Flickinger"
+			title="Judicial Law Clerk at U.S. District Court, Western District of Washington"
+			bulletPoints={[
+				`"I had the opportunity to work with Jordan for several years at the Montana Kaimin, the University of Montana's student publication.`,
+				`Jordan's dedication to his work stood out early on. His willingness to take on difficult projects, and turn out remarkable results, repeatedly made him an asset to the Kaimin.`,
+				`Jordan's diligence, and aptitude with digital interfaces/technologies, will serve him well at any organization."`,
+			]}
+			imgSrc="jesse"
+			href="https://www.linkedin.com/in/johnathan-may-0465691/"
+		/>
+		<PeopleCard
+			name="Scott Matthson"
+			title="SEO, Web Strategy, & Growth Marketing | Entrepreneur"
+			bulletPoints={[
+				`"Jordan is the type of Developer/Engineer who's consistently learning and gaining knowledge through hands-on experience with the latest JavaScript frameworks or web app tools.`,
+				'His attention to detail, strong drive, and dedication truly set him apart."',
+			]}
+			imgSrc="scott"
+			href="https://www.linkedin.com/in/jesse-flickinger-6631b4112/"
+		/>
+	</ul>
+</div>
+
+<style>
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		justify-content: flex-start;
+		gap: 4rem;
+		padding: 0;
+	}
+	@media (max-width: 600px) {
+		.card-grid {
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		}
+	}
+</style>

@@ -3,10 +3,11 @@ import Greeting from '../react/Greeting';
 import Me from './Me.astro';
 import Description from './Description.astro';
 import LinkList from './LinkList.astro';
-import CardList from './CardList.astro';
+import Experience from './Experience.astro';
 import Skills from '../react/Skills';
 import Goodbye from './Goodbye.astro';
 import Divider from './Divider.astro';
+import PeopleAreSaying from './PeopleAreSaying.astro';
 ---
 
 <Me />
@@ -15,10 +16,13 @@ import Divider from './Divider.astro';
 <LinkList />
 <Divider />
 <br />
-<CardList />
+<Experience />
 <Divider />
 <br />
 <Skills client:load />
+<Divider />
+<br />
+<PeopleAreSaying />
 <Goodbye />
 <br />
 <br />

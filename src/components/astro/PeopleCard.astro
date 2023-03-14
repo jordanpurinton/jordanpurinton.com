@@ -1,0 +1,59 @@
+---
+import { Image } from '@astrojs/image/components';
+import ActionButton from './ActionButton.astro';
+
+export interface Props {
+	name: string;
+	title: string;
+	href: string;
+	bulletPoints?: string[];
+	imgSrc: string;
+}
+
+const { name, title, bulletPoints, imgSrc, href } = Astro.props;
+---
+
+<li class="card">
+	<Image
+		src={import(/* @vite-ignore */ `../../../public/${imgSrc}.png`)}
+		alt={imgSrc}
+		class="card-img"
+		height={150}
+		width={150}
+	/>
+	<h2>
+		<ActionButton title={name} href={href} />
+	</h2>
+	<p class="title"><b>{title}</b></p>
+	{bulletPoints?.map((point) => <p>{point}</p>)}
+</li>
+
+<style>
+	.card {
+		background-color: #131313;
+		border-radius: 0.6rem;
+		border: solid 1px rgba(43, 255, 0, 0.235);
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: center;
+		list-style: none;
+		padding: 1.5rem;
+	}
+	.card-img {
+		clip-path: circle();
+		display: block;
+		margin: 1rem 0;
+		height: auto;
+		max-width: 100%;
+	}
+	.title {
+		text-align: center;
+	}
+	p {
+		line-height: 1.3;
+		margin: 1rem 0;
+		color: #fff;
+	}
+</style>
