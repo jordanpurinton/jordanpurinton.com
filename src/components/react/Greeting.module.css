@@ -10,7 +10,6 @@
 .greetingHeader {
 	color: var(--primary-color);
 	display: flex;
-	font-size: 3rem;
 	justify-content: center;
 	margin: 0;
 	text-align: center;

@@ -62,9 +62,9 @@ function CustomTooltip(props: TCustomTooltipProps) {
 export default function Skills() {
 	return (
 		<div>
-			<h1>
+			<h2>
 				<NeonText content="Skills" />
-			</h1>
+			</h2>
 			<p>
 				&gt; I&apos;m a frontend developer with full-stack experience.
 				<br />

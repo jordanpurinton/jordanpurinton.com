@@ -9,7 +9,7 @@ export interface Props {
 const { link, iconType } = Astro.props;
 ---
 
-<Icon id={iconType} height={30} width={30} name={iconType} />
+<Icon id={iconType} height={40} width={40} name={iconType} />
 
 <script define:vars={{ link, iconType }}>
 	function handleClick() {
@@ -22,11 +22,13 @@ const { link, iconType } = Astro.props;
 <style>
 	svg {
 		background: none;
-		border: solid 1px var(--primary-color);
+		border: solid 1px rgba(43, 255, 0, 0.235);
 		border-radius: 50%;
-		padding: 0.5rem 0.6rem;
 		cursor: pointer;
 		outline: inherit;
+		max-height: 100%;
+		max-width: 100%;
+		padding: 0.5rem 0.6rem;
 	}
 	svg:hover {
 		border: solid 1px var(--secondary-color);
