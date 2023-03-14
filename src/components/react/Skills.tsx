@@ -50,10 +50,17 @@ function CustomTooltip(props: TCustomTooltipProps) {
 	const { name, value, level } = payload[0].payload;
 
 	return (
-		<div style={{ background: '#222', padding: '0.5rem', maxWidth: 400 }}>
-			<b>
-				{name} - {value}/100
-			</b>
+		<div
+			style={{
+				background: '#222',
+				padding: '0.25rem',
+				minWidth: 200,
+				maxWidth: 200,
+				textAlign: 'center',
+			}}
+		>
+			<b>{name}</b>
+			<p>{value}/100</p>
 			<p>{level}</p>
 		</div>
 	);
