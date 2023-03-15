@@ -17,11 +17,20 @@ const { title } = Astro.props;
 		<link rel="
 			icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="preload" as="video" href="/me.webm" />
-		<link rel="preload" as="image" href="/gatherboard.png" />
-		<link rel="preload" as="image" href="/orbitalshift.png" />
-		<link rel="preload" as="image" href="/say-something.png" />
-		<link rel="preload" as="image" href="/twdc.png" />
+		<link
+			rel="prefetch"
+			href="/me.webm"
+			crossorigin=""
+			as="video"
+			type="video/webm"
+		/>
+		<link rel="prefetch" href="/gatherboard.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/orbitalshift.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/say-something.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/twdc.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/jesse.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/johnathan.png" crossorigin="" as="image" />
+		<link rel="prefetch" href="/scott.png" crossorigin="" as="image" />
 		<title>{title}</title>
 		<script
 			src="https://cdn.lr-ingest.com/LogRocket.min.js"
