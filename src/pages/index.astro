@@ -5,6 +5,19 @@ import App from '../components/astro/App.astro';
 
 <Layout title="Jordan Purinton">
 	<main>
-		<App />
+		<div class="wrapper">
+			<App />
+		</div>
 	</main>
 </Layout>
+
+<style>
+	.wrapper {
+		margin: 0 8rem;
+	}
+	@media (max-width: 500px) {
+		.wrapper {
+			margin: 0 1rem;
+		}
+	}
+</style>
