@@ -1,0 +1,26 @@
+.modalContent {
+	align-items: center;
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+
+.nameInput {
+	width: 250px;
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	justify-content: flex-start;
+	margin-top: 1rem;
+}
+
+.closeButton {
+	position: absolute;
+	top: 0.25rem;
+	right: 0.25rem;
+}

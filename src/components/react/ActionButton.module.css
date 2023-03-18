@@ -1,0 +1,27 @@
+.actionButton {
+	align-items: center;
+	background: #111;
+	border: solid 1px var(--primary-color);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	display: inline-flex;
+	font-weight: 600;
+	justify-content: center;
+	max-height: 20px;
+	min-height: 20px;
+	outline: 0;
+	padding: 1.25rem 1.75rem;
+	text-align: center;
+	text-decoration: none;
+}
+.actionButton:hover {
+	color: var(--secondary-color);
+	border-color: var(--secondary-color);
+	transition: ease-in 0.25s;
+}
+.actionButton:disabled {
+	background: #333;
+	border-color: #333;
+	color: #666;
+	cursor: not-allowed;
+}
