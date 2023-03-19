@@ -8,34 +8,39 @@ import {
 import gameLog from './gameLog';
 import type { TPlayer, TResult, Card } from './types';
 
-export const getSubtitle = (playerOrDealer: TPlayer, result: TResult) => {
+export const getSubtitle = (
+	playerOrDealer: TPlayer,
+	result: TResult
+): [string, string] => {
 	if (result === 'None') {
 		if (playerOrDealer.didBust) {
-			return ' – Bust!';
+			return ['Bust!', 'red'];
 		} else if (playerOrDealer.isStanding) {
-			return ' – Standing';
+			return ['Standing', 'yellow'];
 		}
 	}
 
 	if (playerOrDealer.name === DEALER_NAME) {
 		if (result === 'Player Win!') {
-			return ' – Dealer Loses!';
+			return ['Dealer Loses!', 'red'];
 		} else if (result === 'Dealer Win!') {
-			return ' – Dealer Wins!';
+			return ['Dealer Wins!', 'red'];
 		}
 	}
 
 	if (playerOrDealer.name !== DEALER_NAME) {
 		if (result === 'Player Win!') {
-			return ' – You Win!';
+			return ['You Win!', 'green'];
 		} else if (result === 'Dealer Win!') {
-			return ' – You Lose!';
+			return ['You Lose!', 'red'];
 		}
 	}
 
 	if (result === 'Tie') {
-		return ' – Tie!';
+		return ['Tie!', 'yellow'];
 	}
+
+	return ['', ''];
 };
 
 export const handleAces = (

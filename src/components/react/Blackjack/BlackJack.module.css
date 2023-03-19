@@ -42,3 +42,19 @@ h3 {
 	text-align: center;
 	width: 100%;
 }
+
+.subtitle {
+	text-decoration: underline;
+}
+
+.subtitleBad {
+	color: red;
+}
+
+.subtitleGood {
+	color: green;
+}
+
+.subtitleNeutral {
+	color: yellow;
+}

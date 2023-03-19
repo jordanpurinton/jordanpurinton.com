@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import styles from './BlackJack.module.css';
-import { BLACKJACK_SCORE, DEALER_NAME } from './constants';
+import { BLACKJACK_SCORE, DEALER_NAME, SUBTITLE_COLOR_MAP } from './constants';
 import ActionButton from '../ActionButton';
 import { Deck } from './Deck';
 import { getSubtitle, handleAces } from './util';
@@ -204,6 +204,9 @@ export default function BlackJack({ name }: { name: string }) {
 		gameLog(deck.cards.length.toString());
 	}
 
+	const [playerSubtitle, playerSubtitleColor] = getSubtitle(player, result);
+	const [dealerSubtitle, dealerSubtitleColor] = getSubtitle(dealer, result);
+
 	return (
 		<div className={styles.blackJackContainer}>
 			<h3>Blackjack</h3>
@@ -211,8 +214,19 @@ export default function BlackJack({ name }: { name: string }) {
 			<p>Result: {result}</p>
 			<br />
 			<h3>
-				Player
-				{getSubtitle(player, result)}
+				Player {playerSubtitle ? ' - ' : ''}
+				<span
+					className={[
+						styles.subtitle,
+						styles[
+							SUBTITLE_COLOR_MAP[
+								playerSubtitleColor as keyof typeof SUBTITLE_COLOR_MAP
+							]
+						],
+					].join(' ')}
+				>
+					{playerSubtitle}
+				</span>
 			</h3>
 			<p>
 				{player.cards.map((card) => (
@@ -222,8 +236,19 @@ export default function BlackJack({ name }: { name: string }) {
 				))}
 			</p>
 			<h3>
-				Dealer
-				{getSubtitle(dealer, result)}
+				Dealer {dealerSubtitle ? ' - ' : ''}
+				<span
+					className={[
+						styles.subtitle,
+						styles[
+							SUBTITLE_COLOR_MAP[
+								dealerSubtitleColor as keyof typeof SUBTITLE_COLOR_MAP
+							]
+						],
+					].join(' ')}
+				>
+					{dealerSubtitle}
+				</span>
 			</h3>
 			<p>
 				{dealer.cards.map((card) => (
