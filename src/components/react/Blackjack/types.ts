@@ -1,3 +1,5 @@
+import type { Deck } from './Deck';
+
 const RESULT = ['None', 'Player Win!', 'Dealer Win!', 'Tie'] as const;
 
 export type TResult = (typeof RESULT)[number];
@@ -32,6 +34,31 @@ const CardName = [
 ] as const;
 
 export type CardName = (typeof CardName)[number];
+
+export type TPlayer = {
+	name: string;
+	score: number;
+	cards: Card[];
+	isStanding: boolean;
+	didBust: boolean;
+};
+
+export type GameStore = {
+	gameStatus: TGameStatus;
+	setGameStatus: (newGameStatus: TGameStatus) => void;
+
+	result: TResult;
+	setResult: (newResult: TResult) => void;
+
+	player: TPlayer;
+	setPlayer: (newPlayer: TPlayer) => void;
+
+	dealer: TPlayer;
+	setDealer: (newDealer: TPlayer) => void;
+
+	deck: Deck;
+	setDeck: (newDeck: Deck) => void;
+};
 
 export class Card {
 	name: CardName;

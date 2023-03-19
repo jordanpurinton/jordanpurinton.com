@@ -3,6 +3,7 @@ import styles from './GameModal.module.css';
 import Modal from 'react-modal';
 import ActionButton from '../ActionButton';
 import BlackJack from './BlackJack';
+import NeonText from '../NeonText';
 
 const customStyles = {
 	content: {
@@ -42,12 +43,17 @@ export default function GameModal({
 					>
 						X
 					</ActionButton>
-					<h2>Enter your name to play a game of Blackjack!</h2>
+					<br />
+					<NeonText content="Enter your name to play a game of Blackjack!" />
+					<br />
+					<br />
 					<input
 						className={styles.nameInput}
 						disabled={showGame}
+						autoFocus
 						type="text"
 						placeholder="Please enter a name.."
+						onKeyDown={(e) => e.key === 'Enter' && setShowGame(true)}
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<div className={styles.buttonContainer}>

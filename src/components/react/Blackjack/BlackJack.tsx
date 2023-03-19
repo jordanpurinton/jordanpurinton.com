@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import styles from './BlackJack.module.css';
-import { useGameStore } from './game.store';
-import { BLACKJACK_SCORE } from './constants';
+import { BLACKJACK_SCORE, DEALER_NAME } from './constants';
 import ActionButton from '../ActionButton';
 import { Deck } from './Deck';
+import { useGameStore } from './game.store';
+import { getSubtitle, handleAces } from './util';
+import gameLog from './gameLog';
 
 export default function BlackJack({ name }: { name: string }) {
 	const {
@@ -34,6 +36,7 @@ export default function BlackJack({ name }: { name: string }) {
 		const [first, second] = deck.cards.splice(0, 2);
 		setPlayer({
 			...player,
+			name,
 			cards: [first],
 			score: first.value,
 		});
@@ -44,9 +47,27 @@ export default function BlackJack({ name }: { name: string }) {
 		});
 		setDeck({
 			...deck,
-			cards: deck.cards.splice(2),
 		});
 
+		return () => {
+			setGameStatus('In Progress');
+			setResult('None');
+			setPlayer({
+				name: '',
+				cards: [],
+				score: 0,
+				isStanding: false,
+				didBust: false,
+			});
+			setDealer({
+				name: '',
+				cards: [],
+				score: 0,
+				isStanding: false,
+				didBust: false,
+			});
+			setDeck(new Deck());
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -63,28 +84,71 @@ export default function BlackJack({ name }: { name: string }) {
 	const shouldUserNextButtonEnable =
 		gameStatus === 'In Progress' && player.isStanding;
 
-	console.log(gameStatus !== 'In Progress');
-	console.log(player.isStanding);
-
-	const handleUserHit = () => {
+	const handleUserHit = useCallback(() => {
 		const [playerCard, dealerCard] = deck.cards.splice(0, 2);
 		const playerIsStanding = player.isStanding;
 		const dealerIsStanding = dealer.isStanding;
 
 		/**
+		 * Handling player tie
+		 */
+		if (playerIsStanding && dealerIsStanding && player.score === dealer.score) {
+			setGameStatus('Game Over!');
+			setResult('Tie');
+			return;
+		}
+
+		/**
+		 * Handling player hitting
+		 */
+		const { newCards: newPlayerCards, newScore: newPlayerScore } = handleAces(
+			player,
+			playerCard,
+			playerIsStanding
+		);
+
+		const SHOULD_PLAYER_STAND =
+			newPlayerScore === BLACKJACK_SCORE || playerIsStanding;
+
+		/**
+		 * Handling dealer hitting
+		 */
+		const { newCards: newDealerCards, newScore: newDealerScore } = handleAces(
+			dealer,
+			dealerCard,
+			dealerIsStanding
+		);
+
+		const SHOULD_DEALER_STAND =
+			(newDealerScore >= 17 &&
+				!dealerIsStanding &&
+				newPlayerScore <= newDealerScore) ||
+			dealerIsStanding;
+
+		setPlayer({
+			...player,
+			cards: newPlayerCards,
+			score: newPlayerScore,
+			isStanding: SHOULD_PLAYER_STAND,
+		});
+
+		setDealer({
+			...dealer,
+			cards: newDealerCards,
+			score: newDealerScore,
+			isStanding: SHOULD_DEALER_STAND,
+		});
+
+		/**
 		 * Handling player busting
 		 */
-		if (
-			!playerIsStanding &&
-			player.score + playerCard.value > BLACKJACK_SCORE
-		) {
+		if (!playerIsStanding && newPlayerScore > BLACKJACK_SCORE) {
 			setPlayer({
 				...player,
-				cards: [...player.cards, playerCard],
-				score: player.score + playerCard.value,
+				cards: newPlayerCards,
+				score: newPlayerScore,
 				didBust: true,
 			});
-
 			setGameStatus('Game Over!');
 			setResult('Dealer Win!');
 			return;
@@ -93,14 +157,11 @@ export default function BlackJack({ name }: { name: string }) {
 		/**
 		 * Handling dealer busting
 		 */
-		if (
-			!dealerIsStanding &&
-			dealer.score + dealerCard.value > BLACKJACK_SCORE
-		) {
+		if (!dealerIsStanding && newDealerScore > BLACKJACK_SCORE) {
 			setDealer({
 				...dealer,
-				cards: [...dealer.cards, dealerCard],
-				score: dealer.score + dealerCard.value,
+				cards: newDealerCards,
+				score: newDealerScore,
 				didBust: true,
 			});
 			setGameStatus('Game Over!');
@@ -108,71 +169,44 @@ export default function BlackJack({ name }: { name: string }) {
 			return;
 		}
 
-		/**
-		 * Handling player hitting
-		 */
-		if (!playerIsStanding && player.score < BLACKJACK_SCORE) {
-			const IS_STAND_SCORE = player.score + playerCard.value === 21;
-			const newPlayerScore = player.score + playerCard.value;
-			setPlayer({
-				...player,
-				cards: [...player.cards, playerCard],
-				score: newPlayerScore,
-				isStanding: IS_STAND_SCORE,
-			});
-
-			if (newPlayerScore > dealer.score && dealerIsStanding) {
-				setGameStatus('Game Over!');
-				setResult('Player Win!');
-				return;
-			}
+		if (newPlayerScore > newDealerScore && dealerIsStanding) {
+			setGameStatus('Game Over!');
+			setResult('Player Win!');
+			return;
 		}
 
-		/**
-		 * Handling dealer hitting
-		 */
-		if (!dealerIsStanding && dealer.score < BLACKJACK_SCORE) {
-			const newDealerScore = dealer.score + dealerCard.value;
-			const IS_STAND_SCORE = newDealerScore >= 17 && !playerIsStanding;
-			setDealer({
-				...dealer,
-				cards: [...dealer.cards, dealerCard],
-				score: dealer.score + dealerCard.value,
-				isStanding: IS_STAND_SCORE,
-			});
-
-			if (newDealerScore > player.score && playerIsStanding) {
-				setGameStatus('Game Over!');
-				setResult('Dealer Win!');
-				return;
-			}
+		if (newDealerScore > newPlayerScore && playerIsStanding) {
+			setGameStatus('Game Over!');
+			setResult('Dealer Win!');
+			return;
 		}
 
 		if (playerIsStanding && dealerIsStanding) {
-			if (player.score > dealer.score) {
+			if (newPlayerScore > newDealerScore) {
 				setGameStatus('Game Over!');
 				setResult('Player Win!');
 				return;
-			} else if (player.score < dealer.score) {
+			} else if (newPlayerScore < newDealerScore) {
 				setGameStatus('Game Over!');
 				setResult('Dealer Win!');
 				return;
 			}
-		}
-
-		/**
-		 * Handling player tie
-		 */
-		if (playerIsStanding && dealerIsStanding && player.score === dealer.score) {
-			setGameStatus('Game Over!');
-			setResult('Tie');
 		}
 
 		setDeck({
 			...deck,
 			cards: deck.cards,
 		});
-	};
+	}, [
+		deck,
+		player,
+		dealer,
+		setPlayer,
+		setDealer,
+		setDeck,
+		setGameStatus,
+		setResult,
+	]);
 
 	const handlePlayerStand = () => {
 		setPlayer({
@@ -203,6 +237,12 @@ export default function BlackJack({ name }: { name: string }) {
 		});
 	};
 
+	if (gameStatus === 'In Progress') {
+		gameLog(JSON.stringify(player, null, 2));
+		gameLog(JSON.stringify(dealer, null, 2));
+		gameLog(deck.cards.length.toString());
+	}
+
 	return (
 		<div className={styles.blackJackContainer}>
 			<h2>Blackjack</h2>
@@ -210,13 +250,13 @@ export default function BlackJack({ name }: { name: string }) {
 			<p>Result: {result}</p>
 			<h2>
 				Player: {name}
-				{player.isStanding ? ' (Standing)' : null}
+				{getSubtitle(player, result)}
 			</h2>
-			<p style={{ display: 'flex', gap: '1rem' }}>
-				{name} Cards:{' '}
+			<p style={{ display: 'flex', gap: '1rem' }}>{name} Cards: </p>
+			<p>
 				{player.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
-						{card.value} of {card.suit}
+						{card.name} of {card.suit} ({card.value}){' '}
 					</span>
 				))}
 			</p>
@@ -225,18 +265,20 @@ export default function BlackJack({ name }: { name: string }) {
 			</p>
 
 			<h2>
-				Dealer: Deadeye Duncan
-				{dealer.isStanding ? ' (Standing)' : null}
+				Dealer: {dealer.name}
+				{getSubtitle(dealer, result)}
 			</h2>
-			<p style={{ display: 'flex', gap: '1rem' }}>
-				Dealer Cards:{' '}
+			<p style={{ display: 'flex', gap: '1rem' }}>{DEALER_NAME} Cards: </p>
+			<p>
 				{dealer.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
-						{card.value} of {card.suit}
+						{card.name} of {card.suit} ({card.value}){' '}
 					</span>
 				))}
 			</p>
-			<p>Dealer Score: {dealer.score}</p>
+			<p>
+				{DEALER_NAME} Score: {dealer.score}
+			</p>
 
 			<div className={styles.gameButtonContainer}>
 				<ActionButton
@@ -257,14 +299,13 @@ export default function BlackJack({ name }: { name: string }) {
 				>
 					Next
 				</ActionButton>
-				{gameStatus === 'Game Over!' ? (
-					<ActionButton
-						className={styles.resetGameButton}
-						onClick={handleResetGame}
-					>
-						Reset
-					</ActionButton>
-				) : null}
+				<ActionButton
+					disabled={gameStatus !== 'Game Over!'}
+					className={styles.resetGameButton}
+					onClick={handleResetGame}
+				>
+					Reset
+				</ActionButton>
 			</div>
 		</div>
 	);

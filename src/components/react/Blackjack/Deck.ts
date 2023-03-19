@@ -3,7 +3,6 @@ import { Card, CardName, CardValue, Suit, Suits } from './types';
 export class Deck {
 	public cards: Card[] = [];
 	private static CARD_TYPES = {
-		Ace: 1,
 		Two: 2,
 		Three: 3,
 		Four: 4,
@@ -16,6 +15,7 @@ export class Deck {
 		Jack: 10,
 		Queen: 10,
 		King: 10,
+		Ace: 11,
 	};
 	constructor() {
 		for (const suit of Object.values(Suits)) {

@@ -1,56 +1,7 @@
-import type { TResult, TGameStatus, Card } from './types';
+import { DEALER_NAME } from './constants';
+import type { TResult, TGameStatus, Card, GameStore } from './types';
 import { create } from 'zustand';
-
 import { Deck } from './Deck';
-
-type GameStore = {
-	// game state
-	gameStatus: TGameStatus;
-	setGameStatus: (newGameStatus: TGameStatus) => void;
-
-	result: TResult;
-	setResult: (newResult: TResult) => void;
-
-	// player state
-	player: {
-		name: string;
-		score: number;
-		cards: Card[];
-		isPendingMove: boolean;
-		isStanding: boolean;
-		didBust: boolean;
-	};
-	setPlayer: (newPlayer: {
-		name: string;
-		score: number;
-		cards: Card[];
-		isPendingMove: boolean;
-		isStanding: boolean;
-		didBust: boolean;
-	}) => void;
-
-	// dealer state
-	dealer: {
-		name: string;
-		score: number;
-		cards: Card[];
-		isPendingMove: boolean;
-		isStanding: boolean;
-		didBust: boolean;
-	};
-	setDealer: (newDealer: {
-		name: string;
-		score: number;
-		cards: Card[];
-		isPendingMove: boolean;
-		isStanding: boolean;
-		didBust: boolean;
-	}) => void;
-
-	// deck state
-	deck: Deck;
-	setDeck: (newDeck: Deck) => void;
-};
 
 export const useGameStore = create<GameStore>((set) => ({
 	// game state
@@ -66,7 +17,6 @@ export const useGameStore = create<GameStore>((set) => ({
 		name: '',
 		score: 0,
 		cards: [],
-		isPendingMove: false,
 		isStanding: false,
 		didBust: false,
 	},
@@ -74,17 +24,15 @@ export const useGameStore = create<GameStore>((set) => ({
 		name: string;
 		score: number;
 		cards: Card[];
-		isPendingMove: boolean;
 		isStanding: boolean;
 		didBust: boolean;
 	}) => set({ player: newPlayer }),
 
 	// dealer state
 	dealer: {
-		name: 'Dealer',
+		name: DEALER_NAME,
 		score: 0,
 		cards: [],
-		isPendingMove: false,
 		isStanding: false,
 		didBust: false,
 	},
@@ -92,7 +40,6 @@ export const useGameStore = create<GameStore>((set) => ({
 		name: string;
 		score: number;
 		cards: Card[];
-		isPendingMove: boolean;
 		isStanding: boolean;
 		didBust: boolean;
 	}) => set({ dealer: newDealer }),
