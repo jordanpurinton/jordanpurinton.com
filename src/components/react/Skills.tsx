@@ -72,7 +72,7 @@ export default function Skills() {
 			<h2 style={{ marginLeft: '1rem' }}>
 				<NeonText content="Skills" />
 			</h2>
-			<p>
+			<p style={{ textAlign: 'left' }}>
 				&gt; I&apos;m a frontend developer with full-stack experience.
 				<br />
 				<br />
