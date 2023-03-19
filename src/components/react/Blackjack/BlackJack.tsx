@@ -1,11 +1,12 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import styles from './BlackJack.module.css';
 import { BLACKJACK_SCORE, DEALER_NAME } from './constants';
 import ActionButton from '../ActionButton';
 import { Deck } from './Deck';
-import { useGameStore } from './game.store';
 import { getSubtitle, handleAces } from './util';
 import gameLog from './gameLog';
+import useInitializeGame from './useInitializeGame';
+import useGame from './useGame';
 
 export default function BlackJack({ name }: { name: string }) {
 	const {
@@ -19,71 +20,28 @@ export default function BlackJack({ name }: { name: string }) {
 		setPlayer,
 		setDealer,
 		setDeck,
-	} = useGameStore((state) => ({
-		gameStatus: state.gameStatus,
-		result: state.result,
-		player: state.player,
-		dealer: state.dealer,
-		deck: state.deck,
-		setGameStatus: state.setGameStatus,
-		setResult: state.setResult,
-		setPlayer: state.setPlayer,
-		setDealer: state.setDealer,
-		setDeck: state.setDeck,
-	}));
+	} = useGame();
 
-	useEffect(() => {
-		const [first, second] = deck.cards.splice(0, 2);
-		setPlayer({
-			...player,
-			name,
-			cards: [first],
-			score: first.value,
-		});
-		setDealer({
-			...dealer,
-			cards: [second],
-			score: second.value,
-		});
-		setDeck({
-			...deck,
-		});
+	// initializes game
+	useInitializeGame(name);
 
-		return () => {
-			setGameStatus('In Progress');
-			setResult('None');
-			setPlayer({
-				name: '',
-				cards: [],
-				score: 0,
-				isStanding: false,
-				didBust: false,
-			});
-			setDealer({
-				name: '',
-				cards: [],
-				score: 0,
-				isStanding: false,
-				didBust: false,
-			});
-			setDeck(new Deck());
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	const shouldUserHitButtonDisable =
+	const disableHitButton =
 		gameStatus !== 'In Progress' || player.didBust || player.isStanding;
 
-	const shouldUserStandButtonDisable =
+	const disableStandButton =
 		gameStatus !== 'In Progress' ||
 		player.didBust ||
 		player.isStanding ||
 		(dealer.isStanding && dealer.score > player.score) ||
 		player.score < dealer.score;
 
-	const shouldUserNextButtonEnable =
-		gameStatus === 'In Progress' && player.isStanding;
+	const disableNextButton = gameStatus === 'In Progress' && player.isStanding;
 
+	const disableResetButton = gameStatus !== 'Game Over!';
+
+	/**
+	 * Handling user hitting
+	 */
 	const handleUserHit = useCallback(() => {
 		const [playerCard, dealerCard] = deck.cards.splice(0, 2);
 		const playerIsStanding = player.isStanding;
@@ -181,6 +139,9 @@ export default function BlackJack({ name }: { name: string }) {
 			return;
 		}
 
+		/**
+		 * Handling player and dealer standing
+		 */
 		if (playerIsStanding && dealerIsStanding) {
 			if (newPlayerScore > newDealerScore) {
 				setGameStatus('Game Over!');
@@ -261,10 +222,6 @@ export default function BlackJack({ name }: { name: string }) {
 				))}
 			</p>
 			<h3>
-				{name} Score: {player.score}
-			</h3>
-			<br />
-			<h3>
 				Dealer
 				{getSubtitle(dealer, result)}
 			</h3>
@@ -275,34 +232,39 @@ export default function BlackJack({ name }: { name: string }) {
 					</span>
 				))}
 			</p>
+			<br />
+			<br />
+			<h3>
+				{name} Score: {player.score}
+			</h3>
 			<h3>
 				{DEALER_NAME} Score: {dealer.score}
 			</h3>
 
 			<div className={styles.gameButtonContainer}>
 				<ActionButton
-					disabled={shouldUserHitButtonDisable}
+					disabled={disableHitButton}
 					onClick={handleUserHit}
 					className={styles.gameControlButton}
 				>
 					Hit
 				</ActionButton>
 				<ActionButton
-					disabled={shouldUserStandButtonDisable}
+					disabled={disableStandButton}
 					onClick={handlePlayerStand}
 					className={styles.gameControlButton}
 				>
 					Stand
 				</ActionButton>
 				<ActionButton
-					disabled={!shouldUserNextButtonEnable}
+					disabled={!disableNextButton}
 					onClick={handleUserHit}
 					className={styles.gameControlButton}
 				>
 					Next
 				</ActionButton>
 				<ActionButton
-					disabled={gameStatus !== 'Game Over!'}
+					disabled={disableResetButton}
 					className={styles.resetGameButton}
 					onClick={handleResetGame}
 				>
