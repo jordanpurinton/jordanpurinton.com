@@ -5,6 +5,7 @@
 	flex-direction: column;
 	justify-content: center;
 	position: relative;
+	text-align: center;
 }
 
 .nameInput {
@@ -22,6 +23,28 @@
 .closeButton {
 	padding: 0.5rem;
 	position: absolute;
-	right: 0.1rem;
-	top: 0.1rem;
+	right: 1rem;
+	top: 1rem;
+}
+
+.inputNameContainer {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	padding: 1rem;
+}
+
+.enterNameContainer {
+	margin: 3rem 0;
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
+p {
+	text-align: center;
 }

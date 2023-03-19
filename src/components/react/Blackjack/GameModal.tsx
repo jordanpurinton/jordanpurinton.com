@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './GameModal.module.css';
 import Modal from 'react-modal';
 import ActionButton from '../ActionButton';
@@ -14,8 +14,8 @@ const customStyles = {
 		bottom: 'auto',
 		marginRight: '-50%',
 		transform: 'translate(-50%, -50%)',
-		height: '90vh',
-		width: '90vw',
+		height: '100vh',
+		width: '100vw',
 	},
 };
 
@@ -28,6 +28,14 @@ export default function GameModal({
 }) {
 	const [name, setName] = useState<string>('');
 	const [showGame, setShowGame] = useState<boolean>(false);
+
+	useEffect(() => {
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = 'unset';
+		};
+	}, []);
+
 	return (
 		<div>
 			<Modal
@@ -41,36 +49,33 @@ export default function GameModal({
 						className={styles.closeButton}
 						onClick={() => setIsModalOpen(!isModalOpen)}
 					>
-						X
+						Close
 					</ActionButton>
-					<br />
-					<NeonText content="Enter your name to play a game of Blackjack!" />
-					<br />
-					<br />
-					<input
-						className={styles.nameInput}
-						disabled={showGame}
-						autoFocus
-						type="text"
-						placeholder="Please enter a name.."
-						onKeyDown={(e) => e.key === 'Enter' && setShowGame(true)}
-						onChange={(e) => setName(e.target.value)}
-					/>
-					<div className={styles.buttonContainer}>
-						<ActionButton
-							disabled={name === '' || showGame}
-							className={styles.startButton}
-							onClick={() => setShowGame(true)}
-						>
-							Start Game
-						</ActionButton>
-						<ActionButton
-							className={styles.closeButton}
-							onClick={() => setIsModalOpen(!isModalOpen)}
-						>
-							X
-						</ActionButton>
-					</div>
+					{!showGame ? (
+						<div className={styles.inputNameContainer}>
+							<div className={styles.enterNameContainer}>
+								<NeonText content="Enter your name to play a game of Blackjack!" />
+							</div>
+							<input
+								className={styles.nameInput}
+								disabled={showGame}
+								autoFocus
+								type="text"
+								placeholder="Please enter a name.."
+								onKeyDown={(e) => e.key === 'Enter' && setShowGame(true)}
+								onChange={(e) => setName(e.target.value)}
+							/>
+							<div className={styles.buttonContainer}>
+								<ActionButton
+									disabled={name === '' || showGame}
+									className={styles.startButton}
+									onClick={() => setShowGame(true)}
+								>
+									Start Game
+								</ActionButton>
+							</div>
+						</div>
+					) : null}
 				</div>
 				{showGame && name ? <BlackJack name={name} /> : null}
 			</Modal>

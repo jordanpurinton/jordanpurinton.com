@@ -245,13 +245,13 @@ export default function BlackJack({ name }: { name: string }) {
 
 	return (
 		<div className={styles.blackJackContainer}>
-			<h2>Blackjack</h2>
+			<h3>Blackjack</h3>
 			<p>Game Status: {gameStatus}</p>
 			<p>Result: {result}</p>
-			<h2>
+			<h3>
 				Player: {name}
 				{getSubtitle(player, result)}
-			</h2>
+			</h3>
 			<p style={{ display: 'flex', gap: '1rem' }}>{name} Cards: </p>
 			<p>
 				{player.cards.map((card) => (
@@ -260,14 +260,14 @@ export default function BlackJack({ name }: { name: string }) {
 					</span>
 				))}
 			</p>
-			<p>
+			<h3>
 				{name} Score: {player.score}
-			</p>
+			</h3>
 
-			<h2>
+			<h3>
 				Dealer: {dealer.name}
 				{getSubtitle(dealer, result)}
-			</h2>
+			</h3>
 			<p style={{ display: 'flex', gap: '1rem' }}>{DEALER_NAME} Cards: </p>
 			<p>
 				{dealer.cards.map((card) => (
@@ -276,26 +276,29 @@ export default function BlackJack({ name }: { name: string }) {
 					</span>
 				))}
 			</p>
-			<p>
+			<h3>
 				{DEALER_NAME} Score: {dealer.score}
-			</p>
+			</h3>
 
 			<div className={styles.gameButtonContainer}>
 				<ActionButton
 					disabled={shouldUserHitButtonDisable}
 					onClick={handleUserHit}
+					className={styles.gameControlButton}
 				>
 					Hit
 				</ActionButton>
 				<ActionButton
 					disabled={shouldUserStandButtonDisable}
 					onClick={handlePlayerStand}
+					className={styles.gameControlButton}
 				>
 					Stand
 				</ActionButton>
 				<ActionButton
 					disabled={!shouldUserNextButtonEnable}
 					onClick={handleUserHit}
+					className={styles.gameControlButton}
 				>
 					Next
 				</ActionButton>

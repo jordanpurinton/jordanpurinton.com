@@ -7,7 +7,7 @@ export default function StartBlackJackButton() {
 	return (
 		<div style={{ display: 'flex', justifyContent: 'center' }}>
 			<ActionButton onClick={() => setIsModalOpen((prev) => !prev)}>
-				Bored already? Click here to play some blackjack!
+				Bored already? Play some Blackjack!
 			</ActionButton>
 			{isModalOpen ? (
 				<GameModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
