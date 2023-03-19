@@ -1,4 +1,10 @@
-import { DEALER_NAME, BLACKJACK_SCORE } from './constants';
+import {
+	DEALER_NAME,
+	BLACKJACK_SCORE,
+	HIGH_ACE_VALUE,
+	LOW_ACE_VALUE,
+	DECREMENT_ACE_VALUE,
+} from './constants';
 import gameLog from './gameLog';
 import type { TPlayer, TResult, Card } from './types';
 
@@ -49,16 +55,16 @@ export const handleAces = (
 	}
 
 	// Check for aces in the current hand and the newly dealt card
-	const aces = newCards.filter((card) => card.value === 11);
+	const aces = newCards.filter((card) => card.value === HIGH_ACE_VALUE);
 	for (const ace of aces) {
 		if (newScore > BLACKJACK_SCORE) {
-			newScore -= 10;
+			newScore -= DECREMENT_ACE_VALUE;
 			// Change the value of the ace to 1 in the newCards array
 			const aceIndex = newCards.findIndex(
 				(card) => card.name === ace.name && card.suit === ace.suit
 			);
 			if (aceIndex !== -1) {
-				newCards[aceIndex].value = 1;
+				newCards[aceIndex].value = LOW_ACE_VALUE;
 			}
 		}
 	}
@@ -68,10 +74,12 @@ export const handleAces = (
 
 	// Check for aces again if the score is still greater than 21
 	while (newScore > BLACKJACK_SCORE && aces.length > 0) {
-		newScore -= 10;
-		const aceIndex = newCards.findIndex((card) => card.value === 11);
+		newScore -= DECREMENT_ACE_VALUE;
+		const aceIndex = newCards.findIndex(
+			(card) => card.value === HIGH_ACE_VALUE
+		);
 		if (aceIndex !== -1) {
-			newCards[aceIndex].value = 1;
+			newCards[aceIndex].value = LOW_ACE_VALUE;
 			aces.splice(aceIndex, 1);
 		}
 	}

@@ -14,7 +14,11 @@
 }
 
 p {
-	margin: 0.5rem;
+	margin: 0.25rem;
+}
+
+h3 {
+	margin: 0.25rem;
 }
 
 .resetGameButton {
@@ -25,4 +29,15 @@ p {
 
 .gameControlButton {
 	padding: 0.75rem;
+}
+
+.playerContainer {
+	align-items: center;
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 1rem 0;
+	text-align: center;
+	width: 100%;
 }
