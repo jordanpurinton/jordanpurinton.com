@@ -210,8 +210,8 @@ export default function BlackJack({ name }: { name: string }) {
 	return (
 		<div className={styles.blackJackContainer}>
 			<h3>Blackjack</h3>
-			<p>Game Status: {gameStatus}</p>
-			<p>Result: {result}</p>
+			<div>Game Status: {gameStatus}</div>
+			<div>Result: {result}</div>
 			<br />
 			<h3>
 				Player {playerSubtitle ? ' - ' : ''}
@@ -228,13 +228,13 @@ export default function BlackJack({ name }: { name: string }) {
 					{playerSubtitle}
 				</span>
 			</h3>
-			<p>
+			<div>
 				{player.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
 						{card.name} of {card.suit} ({card.value}){' '}
 					</span>
 				))}
-			</p>
+			</div>
 			<h3>
 				Dealer {dealerSubtitle ? ' - ' : ''}
 				<span
@@ -250,13 +250,13 @@ export default function BlackJack({ name }: { name: string }) {
 					{dealerSubtitle}
 				</span>
 			</h3>
-			<p>
+			<div>
 				{dealer.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
 						{card.name} of {card.suit} ({card.value}){' '}
 					</span>
 				))}
-			</p>
+			</div>
 			<br />
 			<br />
 			<h3>
