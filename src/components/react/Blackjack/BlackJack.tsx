@@ -248,11 +248,11 @@ export default function BlackJack({ name }: { name: string }) {
 			<h3>Blackjack</h3>
 			<p>Game Status: {gameStatus}</p>
 			<p>Result: {result}</p>
+			<br />
 			<h3>
-				Player: {name}
+				Player
 				{getSubtitle(player, result)}
 			</h3>
-			<p style={{ display: 'flex', gap: '1rem' }}>{name} Cards: </p>
 			<p>
 				{player.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
@@ -263,12 +263,11 @@ export default function BlackJack({ name }: { name: string }) {
 			<h3>
 				{name} Score: {player.score}
 			</h3>
-
+			<br />
 			<h3>
-				Dealer: {dealer.name}
+				Dealer
 				{getSubtitle(dealer, result)}
 			</h3>
-			<p style={{ display: 'flex', gap: '1rem' }}>{DEALER_NAME} Cards: </p>
 			<p>
 				{dealer.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
