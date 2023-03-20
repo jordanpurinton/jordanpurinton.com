@@ -3,7 +3,7 @@ import styles from './GameModal.module.css';
 import Modal from 'react-modal';
 import ActionButton from '../ActionButton';
 import NeonText from '../NeonText';
-import Blackjack from './Blackjack';
+import Blackjack from './BlackJack';
 
 const customStyles = {
 	content: {
