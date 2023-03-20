@@ -228,9 +228,8 @@ export default function Blackjack({ name }: { name: string }) {
 	return (
 		<div className={styles.blackJackContainer}>
 			{/* intro */}
-			<h3>
-				{SUITS}Blackjack{SUITS}
-			</h3>
+			<div>{SUITS}</div>
+			<h3>Blackjack</h3>
 			<div>Game Status: {getFormattedStatus(gameStatus)}</div>
 			<div>Result: {getFormattedResult(result)}</div>
 
