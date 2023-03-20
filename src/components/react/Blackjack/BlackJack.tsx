@@ -257,9 +257,13 @@ export default function Blackjack({ name }: { name: string }) {
 			<div className={styles.playerScoreContainaer}>
 				<h3>
 					{name} Score: {player.score}
+					{result === 'Player Win!' ? <> ✅</> : null}
+					{result === 'Dealer Win!' ? <> ❌</> : null}
 				</h3>
 				<h3>
 					{DEALER_NAME} Score: {dealer.score}
+					{result === 'Dealer Win!' ? <> ✅</> : null}
+					{result === 'Player Win!' ? <> ❌</> : null}
 				</h3>
 			</div>
 
