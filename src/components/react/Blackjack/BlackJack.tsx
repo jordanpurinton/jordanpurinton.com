@@ -1,14 +1,23 @@
 import { useCallback } from 'react';
-import styles from './BlackJack.module.css';
-import { BLACKJACK_SCORE, DEALER_NAME, SUBTITLE_COLOR_MAP } from './constants';
+import styles from './Blackjack.module.css';
+import { BLACKJACK_SCORE, DEALER_NAME } from './constants';
 import ActionButton from '../ActionButton';
 import { Deck } from './Deck';
-import { getSubtitle, handleAces } from './util';
+import {
+	getFormattedResult,
+	getFormattedStatus,
+	getSubtitle,
+	handleAces,
+} from './util';
 import gameLog from './gameLog';
 import useInitializeGame from './useInitializeGame';
 import useGame from './useGame';
 
-export default function BlackJack({ name }: { name: string }) {
+const SUITS = (
+	<span style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>♠ ♣ ♥ ♦</span>
+);
+
+export default function Blackjack({ name }: { name: string }) {
 	const {
 		gameStatus,
 		result,
@@ -169,6 +178,9 @@ export default function BlackJack({ name }: { name: string }) {
 		setResult,
 	]);
 
+	/**
+	 * Handling user standing
+	 */
 	const handlePlayerStand = () => {
 		setPlayer({
 			...player,
@@ -176,6 +188,9 @@ export default function BlackJack({ name }: { name: string }) {
 		});
 	};
 
+	/**
+	 * Handling user resetting game
+	 */
 	const handleResetGame = () => {
 		setGameStatus('In Progress');
 		setResult('None');
@@ -198,36 +213,29 @@ export default function BlackJack({ name }: { name: string }) {
 		});
 	};
 
+	/**
+	 * logging
+	 */
 	if (gameStatus === 'In Progress') {
 		gameLog(JSON.stringify(player, null, 2));
 		gameLog(JSON.stringify(dealer, null, 2));
 		gameLog(deck.cards.length.toString());
 	}
 
-	const [playerSubtitle, playerSubtitleColor] = getSubtitle(player, result);
-	const [dealerSubtitle, dealerSubtitleColor] = getSubtitle(dealer, result);
+	const playerSubtitle = getSubtitle(player, result);
+	const dealerSubtitle = getSubtitle(dealer, result);
 
 	return (
 		<div className={styles.blackJackContainer}>
-			<h3>Blackjack</h3>
-			<div>Game Status: {gameStatus}</div>
-			<div>Result: {result}</div>
-			<br />
+			{/* intro */}
 			<h3>
-				Player {playerSubtitle ? ' - ' : ''}
-				<span
-					className={[
-						styles.subtitle,
-						styles[
-							SUBTITLE_COLOR_MAP[
-								playerSubtitleColor as keyof typeof SUBTITLE_COLOR_MAP
-							]
-						],
-					].join(' ')}
-				>
-					{playerSubtitle}
-				</span>
+				{SUITS}Blackjack{SUITS}
 			</h3>
+			<div>Game Status: {getFormattedStatus(gameStatus)}</div>
+			<div>Result: {getFormattedResult(result)}</div>
+
+			{/* player section */}
+			<h3>Player{playerSubtitle}</h3>
 			<div>
 				{player.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
@@ -235,21 +243,9 @@ export default function BlackJack({ name }: { name: string }) {
 					</span>
 				))}
 			</div>
-			<h3>
-				Dealer {dealerSubtitle ? ' - ' : ''}
-				<span
-					className={[
-						styles.subtitle,
-						styles[
-							SUBTITLE_COLOR_MAP[
-								dealerSubtitleColor as keyof typeof SUBTITLE_COLOR_MAP
-							]
-						],
-					].join(' ')}
-				>
-					{dealerSubtitle}
-				</span>
-			</h3>
+
+			{/* dealer section */}
+			<h3>Dealer{dealerSubtitle}</h3>
 			<div>
 				{dealer.cards.map((card) => (
 					<span key={`${card.name}${card.suit}${card.value}`}>
@@ -257,15 +253,18 @@ export default function BlackJack({ name }: { name: string }) {
 					</span>
 				))}
 			</div>
-			<br />
-			<br />
-			<h3>
-				{name} Score: {player.score}
-			</h3>
-			<h3>
-				{DEALER_NAME} Score: {dealer.score}
-			</h3>
 
+			{/* score section */}
+			<div className={styles.playerScoreContainaer}>
+				<h3>
+					{name} Score: {player.score}
+				</h3>
+				<h3>
+					{DEALER_NAME} Score: {dealer.score}
+				</h3>
+			</div>
+
+			{/* game controls */}
 			<div className={styles.gameButtonContainer}>
 				<ActionButton
 					disabled={disableHitButton}

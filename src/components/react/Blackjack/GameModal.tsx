@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './GameModal.module.css';
 import Modal from 'react-modal';
 import ActionButton from '../ActionButton';
-import BlackJack from './BlackJack';
 import NeonText from '../NeonText';
+import Blackjack from './BlackJack';
 
 const customStyles = {
 	content: {
@@ -77,7 +77,7 @@ export default function GameModal({
 						</div>
 					) : null}
 				</div>
-				{showGame && name ? <BlackJack name={name} /> : null}
+				{showGame && name ? <Blackjack name={name} /> : null}
 			</Modal>
 		</div>
 	);

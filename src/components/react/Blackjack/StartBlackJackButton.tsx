@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ActionButton from '../ActionButton';
 import GameModal from './GameModal';
 
-export default function StartBlackJackButton() {
+export default function StartBlackjackButton() {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	return (
 		<div style={{ display: 'flex', justifyContent: 'center' }}>
