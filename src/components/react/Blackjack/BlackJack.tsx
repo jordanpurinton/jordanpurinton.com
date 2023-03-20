@@ -14,7 +14,7 @@ import useInitializeGame from './useInitializeGame';
 import useGame from './useGame';
 
 const SUITS = (
-	<span style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>♠ ♣ ♥ ♦</span>
+	<span style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>♠ ♥ ♣ ♦</span>
 );
 
 export default function Blackjack({ name }: { name: string }) {
