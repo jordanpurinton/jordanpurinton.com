@@ -43,6 +43,7 @@
 	flex-direction: column;
 	justify-content: center;
 	margin-top: 2rem;
+	min-width: 250px;
 	outline: solid 1px var(--primary-color);
 	padding: 0.5rem 3rem;
 }
