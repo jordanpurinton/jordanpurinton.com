@@ -1,4 +1,5 @@
-import { Card, CardName, CardValue, Suit, Suits } from './types';
+import type { Card, CardName, CardValue, Suit } from './types';
+import { PLAYING_CARDS, SUITS } from './constants';
 
 export class Deck {
 	public cards: Card[] = [];
@@ -18,7 +19,7 @@ export class Deck {
 		Ace: 11,
 	};
 	constructor() {
-		for (const suit of Object.values(Suits)) {
+		for (const suit of Object.values(SUITS)) {
 			for (const [name, value] of Object.entries(Deck.CARD_TYPES)) {
 				const cardName = name as unknown as CardName;
 				const cardValue = value as unknown as CardValue;
@@ -27,6 +28,8 @@ export class Deck {
 					name: cardName,
 					value: cardValue,
 					suit: cardSuit,
+					unicodeArt: PLAYING_CARDS[`${cardName} of ${cardSuit}`],
+					color: cardSuit === '♡' || cardSuit === '♢' ? 'red' : 'white',
 				});
 			}
 		}

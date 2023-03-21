@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import ActionButton from '../ActionButton';
 import NeonText from '../NeonText';
 import Blackjack from './BlackJack';
+import { DEALER_NAME } from './constants';
 
 const customStyles = {
 	content: {
@@ -29,6 +30,9 @@ export default function GameModal({
 	const [name, setName] = useState<string>('');
 	const [showGame, setShowGame] = useState<boolean>(false);
 
+	const DID_ENTER_DEALER_NAME =
+		name.toLowerCase() === DEALER_NAME.toLowerCase();
+
 	useEffect(() => {
 		document.body.style.overflow = 'hidden';
 		return () => {
@@ -44,13 +48,13 @@ export default function GameModal({
 				onRequestClose={() => setIsModalOpen(false)}
 				style={customStyles}
 			>
+				<ActionButton
+					className={styles.closeButton}
+					onClick={() => setIsModalOpen(!isModalOpen)}
+				>
+					X
+				</ActionButton>
 				<div className={styles.modalContent}>
-					<ActionButton
-						className={styles.closeButton}
-						onClick={() => setIsModalOpen(!isModalOpen)}
-					>
-						Close
-					</ActionButton>
 					{!showGame ? (
 						<div className={styles.inputNameContainer}>
 							<div className={styles.enterNameContainer}>
@@ -62,18 +66,23 @@ export default function GameModal({
 								autoFocus
 								type="text"
 								placeholder="Please enter a name.."
-								onKeyDown={(e) => e.key === 'Enter' && setShowGame(true)}
+								onKeyDown={(e) =>
+									e.key === 'Enter' &&
+									!DID_ENTER_DEALER_NAME &&
+									setShowGame(true)
+								}
 								onChange={(e) => setName(e.target.value)}
 							/>
 							<div className={styles.buttonContainer}>
 								<ActionButton
-									disabled={name === '' || showGame}
+									disabled={name === '' || DID_ENTER_DEALER_NAME || showGame}
 									className={styles.startButton}
 									onClick={() => setShowGame(true)}
 								>
 									Start Game
 								</ActionButton>
 							</div>
+							{DID_ENTER_DEALER_NAME ? <p>Name already taken 🙂</p> : null}
 						</div>
 					) : null}
 				</div>

@@ -229,41 +229,58 @@ export default function Blackjack({ name }: { name: string }) {
 		<div className={styles.blackJackContainer}>
 			{/* intro */}
 			<div>{SUITS}</div>
-			<h3>Blackjack</h3>
 			<div>Game Status: {getFormattedStatus(gameStatus)}</div>
 			<div>Result: {getFormattedResult(result)}</div>
 
 			{/* player section */}
-			<h3>Player{playerSubtitle}</h3>
+			<h3 className={styles.nameHeader}>Player{playerSubtitle}</h3>
 			<div>
 				{player.cards.map((card) => (
-					<span key={`${card.name}${card.suit}${card.value}`}>
-						{card.name} of {card.suit} ({card.value}){' '}
+					<span
+						className={styles.card}
+						key={`${card.name}${card.suit}${card.value}`}
+						style={{ color: card.color }}
+					>
+						{card.unicodeArt}{' '}
 					</span>
 				))}
 			</div>
 
 			{/* dealer section */}
-			<h3>Dealer{dealerSubtitle}</h3>
+			<h3 className={styles.nameHeader}>Dealer{dealerSubtitle}</h3>
 			<div>
 				{dealer.cards.map((card) => (
-					<span key={`${card.name}${card.suit}${card.value}`}>
-						{card.name} of {card.suit} ({card.value}){' '}
+					<span
+						className={styles.card}
+						key={`${card.name}${card.suit}${card.value}`}
+						style={{ color: card.color }}
+					>
+						{card.unicodeArt}{' '}
 					</span>
 				))}
 			</div>
 
 			{/* score section */}
 			<div className={styles.playerScoreContainaer}>
-				<h3>
+				<h3 className={styles.playerScoreHeader}>
 					{name} Score: {player.score}
-					{result === 'Player Win!' ? <> ✅</> : null}
-					{result === 'Dealer Win!' ? <> ❌</> : null}
+					<span className={result === 'None' ? styles.hidden : ''}>
+						{/* hack */}
+						{result === 'None' ? <> ✅</> : null}
+						{result === 'Player Win!' ? <> ✅</> : null}
+						{result === 'Dealer Win!' ? <> ❌</> : null}
+						{result === 'Tie' ? <> 👔</> : null}
+					</span>
 				</h3>
-				<h3>
+				<h3 className={styles.playerScoreHeader}>
 					{DEALER_NAME} Score: {dealer.score}
-					{result === 'Dealer Win!' ? <> ✅</> : null}
-					{result === 'Player Win!' ? <> ❌</> : null}
+					<span className={result === 'None' ? styles.hidden : ''}>
+						{/* hack */}
+						{result === 'None' ? <> ✅</> : null}
+						{result === 'Dealer Win!' ? <> ✅</> : null}
+						{result === 'Player Win!' ? <> ❌</> : null}
+						{result === 'Tie' ? <> 👔</> : null}
+					</span>
 				</h3>
 			</div>
 
