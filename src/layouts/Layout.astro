@@ -6,7 +6,7 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -24,20 +24,12 @@ const { title } = Astro.props;
 			as="video"
 			type="video/webm"
 		/>
-		<link rel="prefetch" href="/gatherboard.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/orbitalshift.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/say-something.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/twdc.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/jesse.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/johnathan.png" crossorigin="" as="image" />
-		<link rel="prefetch" href="/scott.png" crossorigin="" as="image" />
 		<title>{title}</title>
 		<script
 			src="https://cdn.lr-ingest.com/LogRocket.min.js"
-			crossorigin="anonymous"
-		></script>
+			crossorigin="anonymous"></script>
 		<script>
-			(window as any)?.LogRocket?.init?.('jordan-purinton/jordanpurintoncom');
+			(window as any)?.LogRocket?.init?.("jordan-purinton/jordanpurintoncom");
 		</script>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-XZWR4NNKRY"
@@ -45,11 +37,12 @@ const { title } = Astro.props;
 		<script>
 			(window as any).dataLayer = (window as any).dataLayer || [];
 			function gtag() {
+				// @ts-ignore
 				(dataLayer as any).push(arguments);
 			}
-			(gtag as any)('js', new Date());
+			(gtag as any)("js", new Date());
 
-			(gtag as any)('config', 'G-XZWR4NNKRY');
+			(gtag as any)("config", "G-XZWR4NNKRY");
 		</script>
 	</head>
 	<body>
@@ -63,14 +56,17 @@ const { title } = Astro.props;
 		--secondary-color: #ff00e1;
 	}
 	html {
+		align-items: center;
 		background: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 32, 14) 75%);
-		font-family: 'Courier New', Courier, monospace;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-family: monospace;
 		font-kerning: none;
 		height: 100vh;
 		width: 100%;
 	}
 	body {
-		background: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 32, 14) 75%);
 		background-attachment: fixed;
 		margin: 0;
 		overscroll-behavior: none;
@@ -83,6 +79,7 @@ const { title } = Astro.props;
 	h3,
 	button {
 		color: var(--primary-color);
+		margin: 0;
 	}
 	[astro-icon] {
 		color: var(--primary-color);

@@ -1,5 +1,5 @@
 .blinker {
-	animation: blink 1s linear infinite alternate;
+	animation: blink 2s linear infinite alternate;
 	margin-left: 0.5rem;
 }
 @keyframes blink {

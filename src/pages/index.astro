@@ -1,23 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import App from '../components/astro/App.astro';
+import Layout from "../layouts/Layout.astro";
+import App from "../components/App.astro";
 ---
 
 <Layout title="Jordan Purinton">
 	<main>
-		<div class="wrapper">
-			<App />
-		</div>
+		<App />
 	</main>
 </Layout>
-
-<style>
-	.wrapper {
-		margin: 0 8rem;
-	}
-	@media (max-width: 500px) {
-		.wrapper {
-			margin: 0 1rem;
-		}
-	}
-</style>
